@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+#  db:
+#    image: postgres
+#    volumes:
+#      - postgress:/var/lib/postgresql/data
+#      - ./dump.sql:/dump.sql
+#    environment:
+#      - POSTGRES_DB=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#    ports:
+#      - "5432:5432"
+#
+#  influxdb:
+#    image: influxdb:latest
+#    ports:
+#      - "8083:8083"
+#      - "8086:8086"
+#      - "8090:8090"
+#    environment:
+#      - INFLUXDB_DATA_ENGINE=tsm1
+#      - INFLUXDB_REPORTING_DISABLED=false
+#      - INFLUXDB_DB=testDB
+#    volumes:
+#      - influx:/var/lib/influxdb
+#
+#  rabbitmq:
+#    image: rabbitmq:3-management-alpine
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+#    volumes:
+#      - rabbitmq-data/:/var/lib/rabbitmq/
+#      - rabbitmq-log/:/var/log/rabbitmq
+
+  web:
+    build: .
+    command: PACK_NAME-start  # manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+#    depends_on:
+#      - db
+
+#volumes:
+#  postgress:
+#  influx:
+#  rabbitmq-data:
+#  rabbitmq-log:
